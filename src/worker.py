@@ -78,7 +78,7 @@ class Worker:
                     self.logger.errorf(err)
                 else:
                     self.logger.infof(
-                        "Deleted remote with id %0 (%1)", id, name + ext)
+                        "Deleted remote with id %0 (%1)", id, name + "." +ext)
 
             if self.opts.delete_local:
                 self.delete(filename)
