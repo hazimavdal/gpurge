@@ -77,8 +77,6 @@ class GClient:
         return metadata, None
 
     def delete(self, file_id, trash=True):
-        return None  # TODO enable this in production.
-
         try:
             if trash:
                 self.__service.files().update(fileId=file_id, body={
