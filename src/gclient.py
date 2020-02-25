@@ -7,6 +7,8 @@ from googleapiclient import discovery
 from oauth2client import file, client, tools
 from googleapiclient.http import MediaIoBaseDownload
 
+CLIENT_ID_FILE = "creds/client_id.json"
+STORAGE_FILE = 'storage.json'
 
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly',
           'https://www.googleapis.com/auth/drive']
@@ -25,10 +27,10 @@ class GClient:
             'drive', 'v3', http=self.get_creds().authorize(Http()))
 
     def get_creds(self):
-        store = file.Storage('storage.json')
+        store = file.Storage(STORAGE_FILE)
         creds = store.get()
         if not creds or creds.invalid:
-            flow = client.flow_from_clientsecrets('client_id.json', SCOPES)
+            flow = client.flow_from_clientsecrets(CLIENT_ID_FILE, SCOPES)
             creds = tools.run_flow(flow, store)
         return creds
 
