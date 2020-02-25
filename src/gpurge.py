@@ -31,7 +31,7 @@ def main():
 
     save = parser.add_mutually_exclusive_group()
     save.add_argument("-i", "--inplace",
-                      default=True,
+                      default=False,
                       action="store_true",
                       help="save the output in the same folder as the input")
     save.add_argument("-o", "--output",
@@ -53,6 +53,9 @@ def main():
                         help="Set verbosity level. Allowed values are 0 (DEBUG), 1 (INFO), 2 (WARN), 3 (ERROR), and 4 (FATAL)")
 
     args = parser.parse_args()
+
+    if not args.output:
+        args.inline = True
 
     if not args.verbosity:
         args.verbosity = DEFAULT_VERBOSITY_LEVEL
