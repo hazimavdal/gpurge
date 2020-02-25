@@ -66,4 +66,4 @@ class Options:
                 continue
 
             if not os.path.exists(arg):
-                os.mkdir(arg)
+                os.makedirs(arg, exist_ok=True)
