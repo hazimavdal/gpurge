@@ -17,6 +17,16 @@ class Worker:
         with open(name, "wb") as f:
             f.write(bytes)
 
+    def new_filename(self, dir, name, ext):
+        filename = f"{dir}/{name}.{ext}"
+
+        i = 0
+        while os.path.isfile(filename):
+            filename = f"{dir}/{name}{str(i)}.{ext}"
+            i += 1
+
+        return filename
+
     def meta(self, filename):
         base = os.path.basename(filename)
         name, ext = os.path.splitext(base)
@@ -57,7 +67,7 @@ class Worker:
             if not self.opts.inplace:
                 dir = self.opts.output_dir
 
-            new_filename = f"{dir}/{name}.{to_ext}"
+            new_filename = self.new_filename(dir, name, to_ext)
             self.save_blob(bytes, new_filename)
             self.logger.infof('Saved "%0" as "%1" %2', filename,
                               new_filename, f'(inplace)' if self.opts.inplace else "")
