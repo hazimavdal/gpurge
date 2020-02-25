@@ -1,3 +1,4 @@
+import os
 import argparse
 from options import Options
 from worker import Worker
@@ -45,7 +46,7 @@ def main():
         "-s", "--gsheet", help="the output format for gsheet files", default="xlsx")
 
     parser.add_argument(
-        "-R", "--report", help="location to save the report file", default=REPORT_FILENAME)
+        "-R", "--report", help="location to save the report file", default="")
 
     parser.add_argument("-v", "--verbosity", type=int, nargs="?",
                         help="Set verbosity level. Allowed values are 0 (DEBUG), 1 (INFO), 2 (WARN), 3 (ERROR), and 4 (FATAL)")
@@ -63,7 +64,7 @@ def main():
     wk = Worker(log, opts)
     wk.work()
 
-    log.save(args.report)
+    log.save(os.path.join(args.report, REPORT_FILENAME))
 
 
 if __name__ == "__main__":
