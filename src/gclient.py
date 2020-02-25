@@ -1,14 +1,16 @@
 # pylint: disable=E1101
 
 import io
-from httplib2 import Http
+import pickle
+import os.path
 import googleapiclient
-from googleapiclient import discovery
-from oauth2client import file, client, tools
+from googleapiclient.discovery import build
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
 from googleapiclient.http import MediaIoBaseDownload
 
 CLIENT_ID_FILE = "creds/client_id.json"
-STORAGE_FILE = 'creds/storage.json'
+STORAGE_FILE = 'creds/storage.pickle'
 
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly',
           'https://www.googleapis.com/auth/drive']
@@ -23,15 +25,27 @@ MIME_TYPES = {
 class GClient:
 
     def __init__(self):
-        self.__service = discovery.build(
-            'drive', 'v3', http=self.get_creds().authorize(Http()))
+        self.__service = build('drive', 'v3', credentials=self.get_creds())
 
     def get_creds(self):
-        store = file.Storage(STORAGE_FILE)
-        creds = store.get()
-        if not creds or creds.invalid:
-            flow = client.flow_from_clientsecrets(CLIENT_ID_FILE, SCOPES)
-            creds = tools.run_flow(flow, store)
+        # Based on https://developers.google.com/drive/api/v3/quickstart/python
+
+        creds = None
+        if os.path.exists(STORAGE_FILE):
+            with open(STORAGE_FILE, 'rb') as token:
+                creds = pickle.load(token)
+
+        if not creds or not creds.valid:
+            if creds and creds.expired and creds.refresh_token:
+                creds.refresh(Request())
+            else:
+                flow = InstalledAppFlow.from_client_secrets_file(
+                    CLIENT_ID_FILE, SCOPES)
+                creds = flow.run_local_server(port=0)
+
+            with open(STORAGE_FILE, 'wb') as token:
+                pickle.dump(creds, token)
+
         return creds
 
     def gerr_nice(self, e):
