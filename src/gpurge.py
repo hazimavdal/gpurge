@@ -5,6 +5,7 @@ from worker import Worker
 from logger import Logger
 
 REPORT_FILENAME = "gpurge.log"
+DEFAULT_VERBOSITY_LEVEL = 4
 
 
 def main():
@@ -54,7 +55,7 @@ def main():
     args = parser.parse_args()
 
     if not args.verbosity:
-        args.verbosity = 100
+        args.verbosity = DEFAULT_VERBOSITY_LEVEL
 
     if args.recursive and args.folder is None:
         parser.error("-r requires -f")
