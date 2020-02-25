@@ -8,7 +8,7 @@ from oauth2client import file, client, tools
 from googleapiclient.http import MediaIoBaseDownload
 
 CLIENT_ID_FILE = "creds/client_id.json"
-STORAGE_FILE = 'storage.json'
+STORAGE_FILE = 'creds/storage.json'
 
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly',
           'https://www.googleapis.com/auth/drive']
