@@ -1,6 +1,6 @@
 # GPurge
 
-This is a utility that converts Google Documents, Sheets, etc. to to physical files. `gpurge` can search in a local folder, recursively, and convert all `.godc` and `gsheet` files to `.docx` and `xlsx`, respectively.
+This is a utility that converts Google Documents, Sheets, etc. to physical files. `gpurge` can search in a local folder, recursively, and convert all `.godc` and `gsheet` files to `.docx` and `xlsx`, respectively.
 
 ## Usage
 
