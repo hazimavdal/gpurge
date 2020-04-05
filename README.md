@@ -1,6 +1,19 @@
 # GPurge
 
-This is a utility that converts Google Documents, Sheets, etc. to physical files. `gpurge` can search in a local folder recursively and convert all `.godc` and `gsheet` files to `.docx` and `xlsx`, respectively.
+This is a utility that converts Google Documents, Sheets, etc. to physical files. `gpurge` can search in a local folder (typically a fully-synced Google Drive folder) recursively and convert all `.godc` and `gsheet` files to `.docx` and `xlsx`, respectively.
+
+## Prerequisites
+
+- Python 3.6 or greater
+
+- [Google Drive Python Client Library V3](https://developers.google.com/drive/api/v3/quickstart/python#step_2_install_the_google_client_library)
+
+```
+pip3 install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+```
+
+- [Turn on Drive API](https://developers.google.com/drive/api/v3/quickstart/python#step_1_turn_on_the). Save the `credentials.json` file as `creds/client_id.json` in the same folder as the `gpurge.py` file.
+
 
 ## Usage
 
