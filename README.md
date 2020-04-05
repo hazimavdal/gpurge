@@ -6,7 +6,7 @@ This is a utility that converts Google Documents, Sheets, etc. to physical files
 
 Run `./gpurge.py -h`.
 
-## Google Docs are great, why convert to word?
+## Google Docs are great, why convert to MS Word?
 
 Here are some scenarios that make sense to do this:
 
