@@ -54,9 +54,6 @@ def main():
 
     args = parser.parse_args()
 
-    if not args.output:
-        args.inline = True
-
     if not args.verbosity:
         args.verbosity = DEFAULT_VERBOSITY_LEVEL
 
@@ -64,7 +61,7 @@ def main():
         parser.error("-r requires -f")
 
     log = Logger(args.verbosity)
-    opts = Options(log, parser)
+    opts = Options(log, args)
     wk = Worker(log, opts)
     wk.work()
 

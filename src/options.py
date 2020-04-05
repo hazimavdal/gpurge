@@ -3,9 +3,11 @@ import glob
 
 
 class Options:
-    def __init__(self, logger, parser):
+    def __init__(self, logger, args):
         self.logger = logger
-        args = parser.parse_args()
+
+        if not args.output:
+            args.inplace = True
 
         if args.list:
             self.files = self.read_file(args.list)
