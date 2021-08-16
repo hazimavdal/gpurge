@@ -21,7 +21,7 @@ def main():
 
     parser.add_argument("-t", "--trash", action="store_true",
                         default=False,
-                        help="Move the remove document to trash")
+                        help="Move the remote document to trash")
 
     locals = parser.add_mutually_exclusive_group()
     locals.add_argument("-d", "--delete", action="store_true",
