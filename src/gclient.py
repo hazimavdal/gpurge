@@ -12,8 +12,7 @@ from googleapiclient.http import MediaIoBaseDownload
 CLIENT_ID_FILE = "creds/client_id.json"
 STORAGE_FILE = 'creds/storage.pickle'
 
-SCOPES = ['https://www.googleapis.com/auth/drive.readonly',
-          'https://www.googleapis.com/auth/drive']
+SCOPES = ['https://www.googleapis.com/auth/drive']
 
 MIME_TYPES = {
     'pdf': 'application/pdf',
