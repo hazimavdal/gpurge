@@ -12,7 +12,7 @@ This is a utility that converts Google Documents, Sheets, etc. to physical files
 pip3 install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 ```
 
-- [Turn on Drive API](https://developers.google.com/drive/api/v3/quickstart/python#step_1_turn_on_the). Save the `credentials.json` file as `creds/client_id.json` in the same folder as the `gpurge.py` file.
+- [Turn on Drive API](https://developers.google.com/drive/api/v3/enable-drive-api). Save the `credentials.json` file as `creds/client_id.json` in the same folder as the `gpurge.py` file.
 
 
 ## Usage
