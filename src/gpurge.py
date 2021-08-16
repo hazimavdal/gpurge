@@ -1,3 +1,4 @@
+#!/bin/python3
 import os
 import argparse
 from options import Options
