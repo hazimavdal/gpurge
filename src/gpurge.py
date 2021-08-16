@@ -14,7 +14,7 @@ def main():
 
     source = parser.add_mutually_exclusive_group(required=True)
     source.add_argument(
-        "-l", "--list", help="a list of document paths to process. E.g. path/hellp.gdoc")
+        "-l", "--list", help="a list of document paths to process. E.g. path/help.gdoc")
     source.add_argument("-f", "--folder", help="a folder to process")
     parser.add_argument("-r", "--recursive", action="store_true",
                         help="search recursively in the given folder")
