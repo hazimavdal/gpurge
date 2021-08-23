@@ -1,4 +1,5 @@
 import os
+import re
 import json
 from gclient import GClient
 from options import Options
@@ -33,7 +34,9 @@ class Worker:
         dir = os.path.dirname(filename)
 
         with open(filename, "r") as f:
-            doc_id = json.load(f)[DOC_ID_FIELD]
+            # Apparently .gdoc/.gsheet files sometimes contain comments!
+            content = re.sub(r"\n\s*//.*\n", "", f.read())
+            doc_id = json.loads(content)[DOC_ID_FIELD]
 
         return dir, name, ext[1:], doc_id
 
@@ -78,7 +81,7 @@ class Worker:
                     self.logger.errorf(err)
                 else:
                     self.logger.infof(
-                        "Deleted remote document with id %0 (%1)", id, name + "." +ext)
+                        "Deleted remote document with id %0 (%1)", id, name + "." + ext)
 
             if self.opts.delete_local:
                 self.delete(filename)
